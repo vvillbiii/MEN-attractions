@@ -14,4 +14,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const singleAttraction = await Attraction.findById(id);
+    const context = { Attraction: singleAttraction };
+    res.render("attraction", context);
+  } catch (error) {
+    console.log(error);
+    req.error = error;
+    return next();
+  }
+});
+
 module.exports = router;
