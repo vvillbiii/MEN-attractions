@@ -27,4 +27,20 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/new", (req, res) => {
+  res.render("newAttraction");
+});
+
+router.post("/", async (req, res) => {
+  const body = req.body;
+  try {
+    const newAttraction = await Attraction.create(body);
+    res.redirect("/attractions");
+  } catch (error) {
+    console.log(error);
+    req.error = error;
+    return next();
+  }
+});
+
 module.exports = router;
