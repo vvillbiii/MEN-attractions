@@ -27,6 +27,32 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/:id/edit", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const editAttraction = await Attraction.findById(id);
+    const context = { Attraction: editAttraction };
+    res.render("editAttraction", context);
+  } catch (error) {
+    console.log(error);
+    req.error = error;
+    return next();
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  try {
+    const updateAttraction = await Attraction.findByIdAndUpdate(id, body);
+    res.redirect(`/attractions/${updateAttraction._id}`);
+  } catch (error) {
+    console.log(error);
+    req.error = error;
+    return next();
+  }
+});
+
 router.get("/new", (req, res) => {
   res.render("newAttraction");
 });
