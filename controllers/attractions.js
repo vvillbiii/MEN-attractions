@@ -53,6 +53,18 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+router.delete(":id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const deleteAttraction = await Attraction.findByIdAndDelete(id);
+    res.redirect("/attractions");
+  } catch (error) {
+    console.log(error);
+    req.error = error;
+    return next();
+  }
+});
+
 router.get("/new", (req, res) => {
   res.render("newAttraction");
 });
