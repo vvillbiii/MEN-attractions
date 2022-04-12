@@ -14,6 +14,23 @@ router.get("/", async (req, res) => {
   }
 });
 
+//put the new route and post route before the id
+router.get("/new", (req, res) => {
+  res.render("newAttraction");
+});
+
+router.post("/", async (req, res) => {
+  const body = req.body;
+  try {
+    const newAttraction = await Attraction.create(body);
+    res.redirect("/attractions");
+  } catch (error) {
+    console.log(error);
+    req.error = error;
+    return next();
+  }
+});
+
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {
@@ -57,22 +74,6 @@ router.delete(":id", async (req, res) => {
   const id = req.params.id;
   try {
     const deleteAttraction = await Attraction.findByIdAndDelete(id);
-    res.redirect("/attractions");
-  } catch (error) {
-    console.log(error);
-    req.error = error;
-    return next();
-  }
-});
-
-router.get("/new", (req, res) => {
-  res.render("newAttraction");
-});
-
-router.post("/", async (req, res) => {
-  const body = req.body;
-  try {
-    const newAttraction = await Attraction.create(body);
     res.redirect("/attractions");
   } catch (error) {
     console.log(error);
