@@ -6,6 +6,26 @@
     <!-- Navbar section -->
     <%- include('../views/partials/navbar') %>
     <h1>All Attractions</h1>
+    <div class="container">
+      <% for(let a of Attraction){ %>
+      <div class="card">
+        <img src="<%= a.image %>" class="card-img" alt="<%= a.name %>" />
+        <div class="card-body">
+          <h3 class="card-title"><%= a.name %></h3>
+          <div>
+            <p>
+              <%= a.address.street %>, <%= a.address.city %>, <%=
+              a.address.state %>
+            </p>
+          </div>
+          <p><%= a.description %></p>
+          <a href="/attractions/<%= a._id %>"
+            ><button class="btn btn-primary">View Attraction Details</button></a
+          >
+        </div>
+      </div>
+      <% }%>
+    </div>
     <!-- footer section -->
     <%- include('../views/partials/footer') %>
   </body>
