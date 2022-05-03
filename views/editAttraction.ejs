@@ -5,7 +5,81 @@
   <body>
     <!-- Navbar section -->
     <%- include('../views/partials/navbar') %>
-    <h1>Edit Attraction</h1>
+    <h1 class="text-center">Edit <%= Attraction.name %></h1>
+
+    <div class="container">
+      <form
+        action="/attactrions/<%= Attraction._id %>?_method=Put"
+        method="post"
+        class="row g-3"
+      >
+        <label for="name" class="form-label"
+          ><strong> Attraction Name </strong></label
+        >
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="<%= Attraction.name %>"
+          class="form-control"
+        />
+
+        <div class="col-md-4">
+          <label for="address" class="form-label"
+            ><strong> Street Address </strong></label
+          >
+          <input
+            type="text"
+            name="address.street"
+            id="address"
+            placeholder="<%= Attraction.address.street %>"
+            class="form-control"
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="address" class="form-label"><strong>City</strong></label>
+          <input
+            type="text"
+            name="address.city"
+            id="address"
+            placeholder="<%= Attraction.address.city %>"
+            class="form-control"
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="address" class="form-label"><strong>State</strong></label>
+          <input
+            type="text"
+            name="address.state"
+            id="address"
+            placeholder="<%= Attraction.address.state %>"
+            class="form-control"
+          />
+        </div>
+        <label for="image" class="form-label"
+          ><strong>Image of Attraction</strong></label
+        >
+        <input type="text" name="image" id="image" class="form-control" />
+        <label for="description" class="form-label"
+          ><strong>Description of Attraction</strong></label
+        >
+        <textarea
+          name="description"
+          id="description"
+          cols="30"
+          rows="10"
+          class="form-control"
+        >
+<%= Attraction.description %></textarea
+        >
+        <button class="btn btn-warning">Submit</button>
+      </form>
+      <div class="my-4">
+        <a href="/attractions/<%= Attraction._id %>"
+          >Back to <%= Attraction.name %>
+        </a>
+      </div>
+    </div>
     <!-- footer section -->
     <%- include('../views/partials/footer') %>
   </body>
