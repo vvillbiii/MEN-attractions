@@ -34,6 +34,14 @@
               Edit <%= Attraction.name%>
             </button></a
           >
+          <div class="my-3">
+            <form
+              action="/attractions/<%= Attraction._id%>?_method=Delete"
+              method="post"
+            >
+              <button class="btn btn-danger">Remove Attraction</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
