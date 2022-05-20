@@ -7,7 +7,7 @@
     <!-- Navbar section -->
     <%- include('../views/partials/navbar') %>
     <h1>All Attractions</h1>
-    <div class="container newback">
+    <div class="container">
       <% for(let a of Attraction){ %>
       <div class="card">
         <img src="<%= a.image %>" class="card-img" alt="<%= a.name %>" />
