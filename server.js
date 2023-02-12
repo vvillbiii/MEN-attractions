@@ -3,7 +3,7 @@ const app = express();
 const dbConnection = require("./config/db.connections");
 const methodOverride = require("method-override");
 const PORT = 4000;
-const user = require("./controllers/user");
+const user = require("./routes/users");
 const attractions = require("./routes/attractions");
 
 app.set("view engine", "ejs");

@@ -1,13 +1,9 @@
-const express = require("express");
-const router = express.Router();
 const User = require("../models/user");
 
-router.get("/register", (req, res) => {
+exports.register = (req, res, next) => {
   res.render("register");
-});
+};
 
-router.get("/login", (req, res) => {
+exports.login = (req, res, next) => {
   res.render("login");
-});
-
-module.exports = router;
+};
