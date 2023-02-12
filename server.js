@@ -3,8 +3,8 @@ const app = express();
 const dbConnection = require("./config/db.connections");
 const methodOverride = require("method-override");
 const PORT = 4000;
-const controllers = require("./controllers/attractions");
 const user = require("./controllers/user");
+const attractions = require("./routes/attractions");
 
 app.set("view engine", "ejs");
 
@@ -12,7 +12,7 @@ app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.use("/attractions", controllers);
+app.use("/attractions", attractions);
 app.use("/", user);
 
 app.get("/", (req, res) => {

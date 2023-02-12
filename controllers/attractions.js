@@ -1,8 +1,7 @@
-const express = require("express");
-const router = express.Router();
 const Attraction = require("../models/attractions");
 
-router.get("/", async (req, res) => {
+// get all attractions => /attractions
+exports.getAttractions = async (req, res, next) => {
   try {
     const AllAttractions = await Attraction.find({});
     const context = { Attraction: AllAttractions };
@@ -12,14 +11,16 @@ router.get("/", async (req, res) => {
     req.error = error;
     return next();
   }
-});
+};
 
 //put the new route and post route before the id
-router.get("/new", (req, res) => {
+//new attraction route => /attractions/new
+exports.newAttraction = async (req, res, next) => {
   res.render("newAttraction");
-});
+};
 
-router.post("/", async (req, res) => {
+// create new attraction post controller => /attractions
+exports.createAttraction = async (req, res, next) => {
   const body = req.body;
   try {
     const newAttraction = await Attraction.create(body);
@@ -29,9 +30,10 @@ router.post("/", async (req, res) => {
     req.error = error;
     return next();
   }
-});
+};
 
-router.get("/:id", async (req, res) => {
+//get single attraction => /attractions/:id
+exports.getAttraction = async (req, res, next) => {
   const id = req.params.id;
   try {
     const singleAttraction = await Attraction.findById(id);
@@ -42,9 +44,10 @@ router.get("/:id", async (req, res) => {
     req.error = error;
     return next();
   }
-});
+};
 
-router.get("/:id/edit", async (req, res) => {
+//update one attraction => /attractions/:id/edit
+exports.editAttraction = async (req, res, next) => {
   const id = req.params.id;
   try {
     const editAttraction = await Attraction.findById(id);
@@ -55,9 +58,10 @@ router.get("/:id/edit", async (req, res) => {
     req.error = error;
     return next();
   }
-});
+};
 
-router.put("/:id", async (req, res) => {
+//update attraction => /attractions/:id
+exports.updateAttraction = async (req, res, next) => {
   const id = req.params.id;
   const body = req.body;
   try {
@@ -68,9 +72,10 @@ router.put("/:id", async (req, res) => {
     req.error = error;
     return next();
   }
-});
+};
 
-router.delete(":id", async (req, res) => {
+//delete attraction => /attractions/:id
+exports.deleteAttraction = async (req, res, next) => {
   const id = req.params.id;
   try {
     const deleteAttraction = await Attraction.findByIdAndDelete(id);
@@ -80,6 +85,4 @@ router.delete(":id", async (req, res) => {
     req.error = error;
     return next();
   }
-});
-
-module.exports = router;
+};
