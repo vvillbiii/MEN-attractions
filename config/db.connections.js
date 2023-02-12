@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const connectionStr = process.env.MONGO_URI;
 
-mongoose.connect(connectionStr);
+mongoose.connect(connectionStr, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 mongoose.connection.on("connected", () => {
   console.log(`MongoDB connected at ${new Date().toLocaleTimeString()}`);
